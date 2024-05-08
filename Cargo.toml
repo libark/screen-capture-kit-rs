@@ -1,10 +1,10 @@
 [package]
 name = "screen-capture-kit"
 description = "Bindings to ScreenCaptureKit framework"
-homepage = "https://github.com/libark/screen-capture-kit"
-repository = "https://github.com/libark/screen-capture-kit"
+homepage = "https://github.com/libark/screen-capture-kit-rs"
+repository = "https://github.com/libark/screen-capture-kit-rs"
 documentation = "https://docs.rs/screen-capture-kit"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["Zhou Wei <zhouwei@ehom.net>"]
 license = "MIT OR Apache-2.0"
 categories = ["multimedia", "os::macos-apis"]
@@ -14,20 +14,20 @@ edition = "2018"
 [dependencies]
 block2 = "0.5"
 core-audio-types = { version = "0.1", optional = true }
-core-foundation = "0.9"
-core-graphics = "0.23"
-core-media = { version = "0.2", features = ["objc"] }
-core-video = { version = "0.2", features = ["objc"], optional = true }
+core-foundation = { version = "0.9", default-features = false }
+core-graphics2 = { version = "0.1", default-features = false, features = ["display", "objc", "window"]}
+core-media = { version = "0.3", default-features = false, features = ["objc"] }
+core-video = { version = "0.3", default-features = false, features = ["objc"], optional = true }
 dispatch2 = "0.1"
 libc = "0.2"
 objc2 = "0.5"
 objc2-foundation = { version = "0.2", features = ["NSArray", "NSDictionary", "NSError", "NSGeometry", "NSString"] }
 
 [features]
-default = ["audio", "video", "link"]
+default = ["audio", "link", "video"]
 audio = ["core-audio-types"]
+link = ["core-foundation/link", "core-graphics2/link", "core-media/link", "core-video/link"]
 video = ["core-video"]
-link = ["core-foundation/link", "core-media/link", "core-video/link"]
 
 [package.metadata.docs.rs]
 no-default-features = true
@@ -35,7 +35,5 @@ features = ["audio", "video"]
 default-target = "x86_64-apple-darwin"
 targets = [
     "aarch64-apple-darwin",
-    "aarch64-apple-ios",
     "x86_64-apple-darwin",
-    "x86_64-apple-ios",
 ]

@@ -4,6 +4,7 @@ extern crate block2;
 #[cfg(feature = "audio")]
 extern crate core_audio_types;
 extern crate core_foundation;
+extern crate core_graphics2 as core_graphics;
 extern crate core_media;
 #[cfg(feature = "video")]
 extern crate core_video;

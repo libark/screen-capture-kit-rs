@@ -2,7 +2,7 @@ use std::ptr::null_mut;
 
 use block2::RcBlock;
 use core_foundation::{base::TCFType, string::CFStringRef};
-use core_graphics::color::{CGColor, SysCGColorRef};
+use core_graphics::color::CGColor;
 use core_media::{sample_buffer::CMSampleBufferRef, time::CMTime, OSType};
 use dispatch2::Queue;
 use libc::size_t;
@@ -170,13 +170,12 @@ impl SCStreamConfiguration {
 
     pub fn get_background_color(&self) -> CGColor {
         unsafe {
-            let color: encode::CGColorRef = msg_send![self, backgroundColor];
-            CGColor::wrap_under_get_rule(color as SysCGColorRef)
+            CGColor::wrap_under_get_rule(msg_send![self, backgroundColor])
         }
     }
 
     pub fn set_background_color(&self, color: CGColor) {
-        unsafe { msg_send![self, setBackgroundColor: color.as_concrete_TypeRef() as encode::CGColorRef] }
+        unsafe { msg_send![self, setBackgroundColor: color.as_concrete_TypeRef()] }
     }
 
     pub fn get_source_rect(&self) -> CGRect {
