@@ -29,6 +29,9 @@ audio = ["core-audio-types"]
 link = ["core-foundation/link", "core-graphics2/link", "core-media/link", "core-video/link"]
 video = ["core-video"]
 
+[[example]]
+name = "screen_capture"
+
 [package.metadata.docs.rs]
 no-default-features = true
 features = ["audio", "video"]

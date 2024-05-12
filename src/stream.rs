@@ -169,9 +169,7 @@ impl SCStreamConfiguration {
     }
 
     pub fn get_background_color(&self) -> CGColor {
-        unsafe {
-            CGColor::wrap_under_get_rule(msg_send![self, backgroundColor])
-        }
+        unsafe { CGColor::wrap_under_get_rule(msg_send![self, backgroundColor]) }
     }
 
     pub fn set_background_color(&self, color: CGColor) {
